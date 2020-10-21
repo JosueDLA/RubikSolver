@@ -5,3 +5,14 @@ __pycache__/
 
 # Test Folder
 test
+
+# Video Folder
+Video
+
+# Image Folder
+Image
+
+# Modules Used
+color_detection
+cv_tools
+shape_detection
