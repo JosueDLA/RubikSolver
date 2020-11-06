@@ -36,7 +36,7 @@ class Cube:
         """
 
         # Get bound box for each contour
-        bounding_boxes = [cv2.cv2.boundingRect(
+        bounding_boxes = [cv2.boundingRect(
             contour) for contour in contours]
 
         # Zip contour and bounding boxes
