@@ -67,7 +67,7 @@ while True:
 
     cv2.putText(frame, str(len(contours)) + " Contours foud",
                 (20, 20), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 0), 2)
-    cv2.putText(frame, str(len(contour_filtered)) + ": Contours Used",
+    cv2.putText(frame, str(len(contour_filtered)) + " Contours Used",
                 (20, 50), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 0), 2)
 
     # Show video
@@ -77,10 +77,10 @@ while True:
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
 
-print(str(sum(allContours)/len(allContours)) +
-      ": Average contours per frame")
-print(str(sum(usedContours)/len(usedContours)) +
-      ": Average used contours per frame")
+print("Average contours per frame: " +
+      str(sum(allContours)/len(allContours)))
+print("Average used contours per frame: " +
+      str(sum(usedContours)/len(usedContours)))
 
 video_capture.release()
 cv2.destroyAllWindows()

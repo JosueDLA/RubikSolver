@@ -9,8 +9,8 @@ class Face(tuple):
 
     def get_coordinates(self):
         faces = []
-        horizontal = []
-        vertical = []
+        y = []
+        x = []
 
         margin = 1
         initial = 40
@@ -19,33 +19,32 @@ class Face(tuple):
         size = (available/4) - (margin*2)
 
         first = border + margin
+
         for i in range(4):
-            vertical.append(first)
+            x.append(first)
             second = first + size
-            vertical.append(second)
+            x.append(second)
             first = second + (margin*2)
             second = first + size
 
         first = initial + margin
+
         for i in range(3):
-            horizontal.append(first)
+            y.append(first)
             second = first + size
-            horizontal.append(second)
+            y.append(second)
             first = second + (margin*2)
             second = first + size
 
+        x = [int((e/100) * self.width) for e in x]
+        y = [int((e/100) * self.width) for e in y]
+
         # Faces U L F R B D
-        faces.append(((horizontal[2], vertical[0]),
-                      (horizontal[3], vertical[1])))
-        faces.append(((horizontal[0], vertical[2]),
-                      (horizontal[1], vertical[3])))
-        faces.append(((horizontal[2], vertical[2]),
-                      (horizontal[3], vertical[3])))
-        faces.append(((horizontal[4], vertical[2]),
-                      (horizontal[5], vertical[3])))
-        faces.append(((horizontal[6], vertical[2]),
-                      (horizontal[7], vertical[3])))
-        faces.append(((horizontal[2], vertical[4]),
-                      (horizontal[3], vertical[5])))
+        faces.append(((x[2], y[0]), (x[3], y[1])))
+        faces.append(((x[0], y[2]), (x[1], y[3])))
+        faces.append(((x[2], y[2]), (x[3], y[3])))
+        faces.append(((x[4], y[2]), (x[5], y[3])))
+        faces.append(((x[6], y[2]), (x[7], y[3])))
+        faces.append(((x[2], y[4]), (x[3], y[5])))
 
         return faces
