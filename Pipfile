@@ -8,6 +8,8 @@ verify_ssl = true
 [packages]
 opencv-python = "*"
 numpy = "*"
+shape-detection-jdla = "*"
+color-detection-jdla = "*"
 
 [requires]
 python_version = "3.8"

@@ -8,7 +8,12 @@ class Face(tuple):
         self.width = width
         return tuple.__new__(Face, (self.width, self.height))
 
-    def get_coordinates(self, porcentage=40):
+    def get_faces(self, porcentage=40):
+        """
+        Find coordinates to draw rubik's cube faces
+
+        :param porcentage: percentage of screen used to draw the faces.
+        """
         faces = []
         faces_x = []
         faces_y = []
@@ -70,3 +75,70 @@ class Face(tuple):
         faces.append(((faces_x[2], faces_y[4]), (faces_x[3], faces_y[5])))
 
         return faces
+
+    @staticmethod
+    def get_squares(p1, p2, size=3):
+        """
+        Divide a square into sub-squares based on given size.
+
+        :param p1: initial point line one
+        :param p2: end point line one
+
+        :returns tuple: sub-squares coordinates
+        """
+        # Find points coordinates
+        # A______B
+        # |      |
+        # |      |
+        # D______C
+
+        A = p1
+        B = (p2[0], p1[1])
+        C = p2
+        D = (p1[0], p2[1])
+
+        pass
+
+    @staticmethod
+    def _get_intersection(p1, p2, p3, p4):
+        """
+        Find intersection of two lines
+
+        :param p1: initial point line one
+        :param p2: end point line one
+        :param p3: initial point line two
+        :param p4: end point line two
+
+        :returns tuple: intersection point (x, y)
+
+        p1 ________ p2
+
+        p3 ________ p4
+        """
+        # x = x1 + u * (x2-x1)
+        # y = y1 + u * (y2-y1)
+        # u = ((x4-x3)*(y1-y3) - (y4-y3)*(x1-x3)) / ((y4-y3)*(x2-x1) - (x4-x3)*(y2-y1))
+        # u = ((x2-x1)*(y1-y3) - (y2-y1)*(x1-x3)) / ((y4-y3)*(x2-x1) - (x4-x3)*(y2-y1))
+
+        u = ((p4[0]-p3[0])*(p1[1]-p3[1]) - (p4[1]-p3[1])*(p1[0]-p3[0])) / \
+            ((p4[1]-p3[1])*(p2[0]-p1[0]) - (p4[0]-p3[0])*(p2[1]-p1[1]))
+
+        x = int(p1[0] + u * (p2[0]-p1[0]))
+        y = int(p1[1] + u * (p2[1]-p1[1]))
+
+        return (x, y)
+
+    @staticmethod
+    def _get_center(p1, p2):
+        """
+        Find the center of a line
+
+        :param p1: initial point line one
+        :param p2: end point line one
+
+        :returns tuple: center point (x, y)
+
+        """
+        x = int((p1[0]+p2[0])/2)
+        y = int((p1[1]+p2[1])/2)
+        return (x, y)
